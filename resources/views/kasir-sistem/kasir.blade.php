@@ -4,34 +4,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>POS - Kasir</title>
-    {{-- Pastikan Tailwind sudah di-build melalui Vite (Laravel 11) --}}
+    <title>Kasir dz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* sedikit shadow dan rounded yang konsisten */
         .card-shadow {
             box-shadow: 0 6px 18px rgba(20, 20, 20, 0.06);
         }
+        body{
+            background: rgb(15, 15, 15);
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 text-slate-900">
+<body class="text-slate-900">
     <div class="min-h-screen p-4 md:p-8">
         <div class="max-w-[1400px] mx-auto">
             {{-- Top bar --}}
             <header class="mb-6">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="text-3xl font-extrabold">Kasir DZ</h1>
-                        <p class="text-sm text-slate-500">Jakpus</p>
+                        <h1 class="text-3xl text-white font-extrabold">Kasir DZ</h1>
+                        <p class="text-sm text-white">Jakpus</p>
                     </div>
 
                     <div class="flex items-center gap-4">
 
 
                         <div class="flex items-center gap-3">
-                            <div class="text-sm text-slate-600">Admin<br /><span
-                                    class="text-xs text-slate-400">Logout</span></div>
+                            <div class="text-sm text-white">Admin<br /><span
+                                    class="text-xs text-white">Logout</span></div>
                             <div class="w-10 h-10 rounded-full bg-emerald-200 flex items-center justify-center">MN</div>
                         </div>
                     </div>
@@ -44,26 +46,23 @@
                 <section class="lg:col-span-9 space-y-4">
 
                     {{-- category pills --}}
-                    <div class="flex flex-wrap gap-3 justify-between items-center mb-4">
+                    <div class="flex w-full flex-wrap gap-3 justify-between items-center mb-4">
                         <div>
-                        <button class="px-4 py-2 rounded-full border border-slate-200 bg-white"><a href="{{ route('post.kategori', 'Makanan') }}">Makanan</a></button>
-                        <button class="px-4 py-2 rounded-full border border-slate-200 bg-white"><a href="{{ route('post.kategori', 'Minuman') }}">Minuman</a></button>
+                        <button class="px-4 py-2 rounded-full border border-gray-500 text-white bg-[#232323]"><a href="{{ route('post.kategori', 'Makanan') }}">Makanan</a></button>
+                        <button class="px-4 py-2 rounded-full border border-gray-500 text-white bg-[#232323]"><a href="{{ route('post.kategori', 'Minuman') }}">Minuman</a></button>
                         </div>
-                        <div class="relative w-full max-w-[420px] md:max-w-[520px]">
-                            <input placeholder="Search menu"
-                                class="w-full pl-4 pr-10 py-3 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-300" />
-                            <button class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full">
-                                Cari
-                            </button>
+                        <div class="relative">
+                            <!-- lihat produk -->
+                             <!-- <a class="px-4 py-2 rounded-full text-white border border-gray-500 bg-orange-400" href="{{ route('show.table') }}">lihat Produk</a> -->
                         </div>
                     </div>
 
                     {{-- hero row cards --}}
                     <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
                         <a href="{{ route('show.table') }}">
-                            <div class="card-shadow text-center rounded-lg overflow-hidden bg-white p-4">
-                                <div class="text-xl font-semibold">Buat Mwnu Baru</div>
-                                <p class="text-sm text-slate-500">Klik disini</p>
+                            <div class="card-shadow text-white text-center rounded-lg shadow-lg overflow-hidden bg-[#232323] p-4">
+                                <div class="text-xl font-semibold">Buat Menu Baru</div>
+                                <p class="text-sm">Klik disini</p>
                             </div>
                         </a>
                         <!-- <div class="card-shadow text-center rounded-lg overflow-hidden bg-white p-4">
@@ -76,7 +75,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                         @foreach($kategoriProducts as $post)
-                        <div class="card-shadow rounded-lg bg-white p-4 flex flex-col justify-between">
+                        <div class="card-shadow rounded-lg bg-[#232323] p-4 text-white flex flex-col justify-between">
                             <div>
                                 <div
                                     class="h-40 w-full bg-slate-100 rounded-md mb-3 flex items-center justify-center text-slate-400">
@@ -91,15 +90,15 @@
 
                                     <div class="flex items-center gap-2">
                                         <span
-                                            class="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center">Stock</span>
+                                            class="w-8 h-8 rounded-full flex items-center justify-center">Stock</span>
                                         <input value="{{ old('stock', $post->stock) }}" readonly
-                                            class="w-12 text-center rounded-md border border-slate-200 py-1" />
+                                            class="w-12 bg-[#232323] text-center rounded-md border border-slate-200 py-1" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mt-3 flex items-center justify-between">
-                                <button class="btn-add px-4 py-2 rounded-md bg-emerald-600 text-white font-semibold"
+                                <button class="btn-add px-4 py-2 rounded-md border text-white font-semibold"
                                     data-id="{{ $post->id }}" data-name="{{ $post->name }}"
                                     data-price="{{ $post->price }}">Add
                                     to
@@ -114,9 +113,9 @@
 
                 {{-- Right sidebar (order summary) --}}
                 
-                <aside class="lg:col-span-3">
-                    <div class="card-shadow bg-white rounded-lg p-4 flex flex-col h-full">
-                        <h2 class="text-xl font-semibold mb-4 text-center">Order Summary</h2>
+                <aside class="lg:col-span-3 text-white">
+                    <div class="card-shadow bg-[#232323] rounded-lg p-4 flex flex-col h-full">
+                        <h2 class="text-xl font-semibold mb-4 text-center">Keranjang</h2>
                         <div id="cart-items" class="flex-grow space-y-4 overflow-y-auto">
                            <!-- Cart items will be dynamically added here via JS -->
                         </div>
@@ -126,7 +125,7 @@
                                 <div id="cart-total" class="text-lg font-bold">Rp0</div>
                             </div>
                           <button
-    class="checkout-btn w-full bg-emerald-600 text-white py-3 rounded-md font-semibold hover:bg-emerald-700 transition">
+    class="checkout-btn w-full bg-orange-400 text-white py-3 rounded-md font-semibold transition">
     Checkout
 </button>
                         </div>

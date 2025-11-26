@@ -33,15 +33,15 @@ class ProductController extends Controller {
             'kategori' => 'required',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-           'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'discount' => 'nullable|integer'
         ] );
         if ( $request->hasFile( 'image' ) ) {
             $imagePath = $request->file( 'image' )->store( 'products', 'public' );
-            $validated['image'] = $imagePath;
+            $validated[ 'image' ] = $imagePath;
         }
         Product::create( $validated );
-        return redirect()->back()->with( 'success', 'Produk berhasil diperbarui' );
+        return redirect()->back()->with( 'success', 'Produk berhasil di tambahkan' );
     }
 
     /**
@@ -56,25 +56,43 @@ class ProductController extends Controller {
     * Show the form for editing the specified resource.
     */
 
-    public function edit( Produk $produk ) {
-        //
+    public function edit( $id ) {
+        $data_old = Product::findOrFail( $id );
+        return view( 'kasir-sistem.edit-produk', compact( 'data_old' ) );
     }
 
     /**
     * Update the specified resource in storage.
     */
 
-    public function update( Request $request, Produk $produk ) {
-        //
+    public function update( Request $request, $id ) {
+        $validated = $request->validate( [
+            'name' => 'required',
+            'kategori' => 'required',
+            'price' => 'required|integer',
+            'stock' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'discount' => 'nullable|integer',
+        ] );
+
+        if ( $request->hasFile( 'image' ) ) {
+            $imagePath = $request->file( 'image' )->store( 'products', 'public' );
+            $validated[ 'image' ] = $imagePath;
+        }
+
+        $update_data = Product::findOrFail( $id );
+        $update_data->update( $validated );
+
+        return redirect()->route( 'show.table' )->with( 'success', 'Produk berhasil diupdate' );
     }
 
     /**
     * Remove the specified resource from storage.
     */
 
-    public function delete($id) {
-        $products = Product::findOrFail($id);
+    public function delete( $id ) {
+        $products = Product::findOrFail( $id );
         $products->delete();
-        return redirect()->back()->with('success', 'Produk berhasil dihapus');
+        return redirect()->back()->with( 'success', 'Produk berhasil dihapus' );
     }
 }

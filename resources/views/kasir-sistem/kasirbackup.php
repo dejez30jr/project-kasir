@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>POS - Kasir</title>
-    {{-- Pastikan Tailwind sudah di-build melalui Vite (Laravel 11) --}}
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* sedikit shadow dan rounded yang konsisten */

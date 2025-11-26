@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
+            $table->string('kategori');
             $table->integer('stock')->default(0);
             $table->string('image')->nullable();
             $table->integer('discount')->default(0); // persen
