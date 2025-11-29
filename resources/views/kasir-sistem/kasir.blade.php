@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kasir deris</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- !!!! copy right derisdev !!!!! -->
     <style>
         .card-shadow {
@@ -117,7 +117,7 @@
                     <div class="card-shadow bg-[#232323] rounded-lg p-4 flex flex-col h-full">
                         <h2 class="text-xl font-semibold mb-4 text-center">Keranjang</h2>
                         <div id="cart-items" class="flex-grow space-y-4 overflow-y-auto">
-                            <!-- Cart items will be dynamically added here via JS -->
+                            <!-- ini isi list buat card nye di keranjang -->
                         </div>
                         <div class="mt-4 pt-4 border-t border-slate-200">
                             <div class="flex items-center justify-between mb-2">
